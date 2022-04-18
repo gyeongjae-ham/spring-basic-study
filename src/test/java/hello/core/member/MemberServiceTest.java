@@ -9,6 +9,7 @@ public class MemberServiceTest {
 
     MemberService memberService;
 
+    // 테스트 마다 주입되도록 이렇게 작성하는 게 좋다
     @BeforeEach
     public void beforeEach() {
         AppConfig appConfig = new AppConfig();
