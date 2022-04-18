@@ -2,6 +2,7 @@ package hello.core.order;
 
 import hello.core.discount.DiscoutPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
@@ -11,7 +12,7 @@ import hello.core.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();  // memberRepository로 Memory 선택
-    private final DiscoutPolicy discountPolicy = new FixDiscountPolicy(); // discountPolicy로 정액 할인 선택
+    private DiscoutPolicy discountPolicy; // DIP 원칙을 지켰더니 코드가 안돌아감 - 어떻게 해야 DIP를 지키면서 구현체를 넣어줄 수 있을까?
 
     // OrderService의 메서드 구현
     @Override
