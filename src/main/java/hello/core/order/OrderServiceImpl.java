@@ -1,18 +1,20 @@
 package hello.core.order;
 
 import hello.core.discount.DiscoutPolicy;
-import hello.core.discount.FixDiscountPolicy;
-import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemoryMemberRepository;
 
 // OrderService의 구현체 OrderServiceImpl 생성
 
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();  // memberRepository로 Memory 선택
-    private DiscoutPolicy discountPolicy; // DIP 원칙을 지켰더니 코드가 안돌아감 - 어떻게 해야 DIP를 지키면서 구현체를 넣어줄 수 있을까?
+    private final MemberRepository memberRepository;  // 뭐가 들어올 지 얘는 모름
+    private final DiscoutPolicy discountPolicy; // 뭐가 들어올 지 얘는 모름
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscoutPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     // OrderService의 메서드 구현
     @Override
