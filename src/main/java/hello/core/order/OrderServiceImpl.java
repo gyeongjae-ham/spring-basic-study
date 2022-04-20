@@ -1,6 +1,6 @@
 package hello.core.order;
 
-import hello.core.discount.DiscoutPolicy;
+import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 
@@ -9,9 +9,9 @@ import hello.core.member.MemberRepository;
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;  // 뭐가 들어올 지 얘는 모름
-    private final DiscoutPolicy discountPolicy; // 뭐가 들어올 지 얘는 모름
+    private final DiscountPolicy discountPolicy; // 뭐가 들어올 지 얘는 모름
 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscoutPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }

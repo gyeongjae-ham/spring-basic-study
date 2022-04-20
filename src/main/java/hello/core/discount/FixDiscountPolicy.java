@@ -5,7 +5,7 @@ import hello.core.member.Member;
 
 // 정액 할인 정책(구현체) - interface(할인 정책) 생성
 
-public class FixDiscountPolicy implements DiscoutPolicy{
+public class FixDiscountPolicy implements DiscountPolicy {
 
     private int discountFixAmount = 1000; // 1000원 할인
 
