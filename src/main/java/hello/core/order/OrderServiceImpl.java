@@ -4,6 +4,8 @@ import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 
+import java.io.ObjectInputStream;
+
 // OrderService의 구현체 OrderServiceImpl 생성
 
 public class OrderServiceImpl implements OrderService {
@@ -23,5 +25,11 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice); // 할인 정책(정액 할인)에 member 정보와 item 가격 정보 넘겨서(Grade 확인 후) 할인 가격 리턴 받기
 
         return new Order(memberId, itemName, itemPrice, discountPrice); // 새로운 주문 생성
+    }
+
+    // 테스트 용도(@Configuration이 싱글톤 유지하는지)
+
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
