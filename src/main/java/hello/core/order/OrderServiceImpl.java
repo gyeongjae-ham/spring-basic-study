@@ -18,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
   // 바로 구현체를 빈으로 등록해버리는 거 아냐..?
   // @Autowired를 생성자에 붙여주면 MemberRepository, DiscountPolicy를 만드는 파일을 찾아서 자동으로 의존관계를 주입해준다!!!
   // 미친 기능..!!!!
+  // 생성자가 딱 1개만 있을 경우 @Autowired를 생략할 수 있다
   @Autowired
   public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
     this.memberRepository = memberRepository;
