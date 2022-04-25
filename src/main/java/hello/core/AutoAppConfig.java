@@ -1,8 +1,5 @@
 package hello.core;
 
-import hello.core.member.MemberRepository;
-import hello.core.member.MemoryMemberRepository;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -18,8 +15,8 @@ public class AutoAppConfig {
 
   // 수동 빈과 자동 등록 빈의 이름이 종복될 경우
   // 수동으로 등록한 빈이 우선된다!!
-  @Bean(name = "memoryMemberRepository")
-  public MemberRepository memberRepository() {
-    return new MemoryMemberRepository();
-  }
+  //  @Bean(name = "memoryMemberRepository")
+  //  public MemberRepository memberRepository() {
+  //    return new MemoryMemberRepository();
+  //  }
 }
