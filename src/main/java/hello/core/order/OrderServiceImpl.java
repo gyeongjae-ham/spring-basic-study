@@ -4,6 +4,7 @@ import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 // OrderService의 구현체 OrderServiceImpl 생성
@@ -20,7 +21,9 @@ public class OrderServiceImpl implements OrderService {
   // 미친 기능..!!!!
   // 생성자가 딱 1개만 있을 경우 @Autowired를 생략할 수 있다
   @Autowired
-  public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+  public OrderServiceImpl(
+      MemberRepository memberRepository,
+      @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
     this.memberRepository = memberRepository;
     this.discountPolicy = discountPolicy;
   }
