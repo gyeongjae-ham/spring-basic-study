@@ -1,6 +1,7 @@
 package hello.core.scope;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -36,19 +37,16 @@ public class SingletonWithPrototypeTest1 {
 
     ClientBean clientBean2 = ac.getBean(ClientBean.class);
     int count2 = clientBean2.logic();
-    assertThat(count2).isEqualTo(2);
+    assertThat(count2).isEqualTo(1);
   }
 
   @Scope("singleton")
   static class ClientBean {
-    private final PrototypeBean prototypeBean; // 생성 지점에 이미 주입되어 있음!!
 
-    @Autowired
-    public ClientBean(PrototypeBean prototypeBean) {
-      this.prototypeBean = prototypeBean;
-    }
+    @Autowired private ObjectProvider<PrototypeBean> prototypeBeanProvider;
 
     public int logic() {
+      PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
       prototypeBean.addCount();
       int count = prototypeBean.getCount();
       // logic 요청이 올 때마다 prototype을 생성하고 싶은데 최초에 주입된 prototype Bean을 사용하는 상황 발생!!
