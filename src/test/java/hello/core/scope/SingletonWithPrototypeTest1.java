@@ -1,13 +1,13 @@
 package hello.core.scope;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -43,10 +43,12 @@ public class SingletonWithPrototypeTest1 {
   @Scope("singleton")
   static class ClientBean {
 
-    @Autowired private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+    // Provider JSR330 자바 표준으로 이용하려면
+    // build.gradle에 'javax.inject:javax.inject:1'를 추가해줘야 한다
+    @Autowired private Provider<PrototypeBean> prototypeBeanProvider;
 
     public int logic() {
-      PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+      PrototypeBean prototypeBean = prototypeBeanProvider.get();
       prototypeBean.addCount();
       int count = prototypeBean.getCount();
       // logic 요청이 올 때마다 prototype을 생성하고 싶은데 최초에 주입된 prototype Bean을 사용하는 상황 발생!!
