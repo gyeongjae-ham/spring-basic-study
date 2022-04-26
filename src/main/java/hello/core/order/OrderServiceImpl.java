@@ -3,13 +3,12 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 // OrderService의 구현체 OrderServiceImpl 생성
 
 @Component
-@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
   private final MemberRepository memberRepository; // 뭐가 들어올 지 얘는 모름
@@ -20,6 +19,11 @@ public class OrderServiceImpl implements OrderService {
   // @Autowired를 생성자에 붙여주면 MemberRepository, DiscountPolicy를 만드는 파일을 찾아서 자동으로 의존관계를 주입해준다!!!
   // 미친 기능..!!!!
   // 생성자가 딱 1개만 있을 경우 @Autowired를 생략할 수 있다
+  @Autowired
+  public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    this.memberRepository = memberRepository;
+    this.discountPolicy = discountPolicy;
+  }
 
   // OrderService의 메서드 구현
   @Override
