@@ -21,9 +21,9 @@ public class OrderServiceImpl implements OrderService {
   // 생성자가 딱 1개만 있을 경우 @Autowired를 생략할 수 있다
   // @Autowired 매칭 기능 - 타입 매칭의 결과가 2개 이상일 때 필드 명, 파라미터 명으로 빈 이름 매칭
   @Autowired
-  public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
+  public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
     this.memberRepository = memberRepository;
-    this.discountPolicy = rateDiscountPolicy;
+    this.discountPolicy = discountPolicy;
   }
 
   // OrderService의 메서드 구현
