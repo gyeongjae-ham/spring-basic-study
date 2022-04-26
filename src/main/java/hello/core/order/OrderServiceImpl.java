@@ -4,7 +4,6 @@ import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 // OrderService의 구현체 OrderServiceImpl 생성
@@ -20,12 +19,11 @@ public class OrderServiceImpl implements OrderService {
   // @Autowired를 생성자에 붙여주면 MemberRepository, DiscountPolicy를 만드는 파일을 찾아서 자동으로 의존관계를 주입해준다!!!
   // 미친 기능..!!!!
   // 생성자가 딱 1개만 있을 경우 @Autowired를 생략할 수 있다
+  // @Autowired 매칭 기능 - 타입 매칭의 결과가 2개 이상일 때 필드 명, 파라미터 명으로 빈 이름 매칭
   @Autowired
-  public OrderServiceImpl(
-      MemberRepository memberRepository,
-      @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+  public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
     this.memberRepository = memberRepository;
-    this.discountPolicy = discountPolicy;
+    this.discountPolicy = rateDiscountPolicy;
   }
 
   // OrderService의 메서드 구현
